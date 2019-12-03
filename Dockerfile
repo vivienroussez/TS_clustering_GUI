@@ -15,12 +15,12 @@ RUN apt-get update && apt-get install -y \
     libxml2-dev 
 
 # basic shiny functionality
-RUN R -e "install.packages(c('plotly','leaflet'),repos='https://cloud.r-project.org/') "
+RUN R -e "install.packages(c('plotly')),repos='https://cloud.r-project.org/') "
 
 #RUN mkdir /root/AD_test
-COPY TS_clust_GUI /home/jenkins/TS_clust_GUI
+COPY ts_clust_gui /home/jenkins/ts_clust_gui
 
 COPY Rprofile.site /usr/lib/R/etc/
 EXPOSE 3838
 
-CMD ["R", "-e", "shiny::runApp(port=3838, host='0.0.0.0','/home/jenkins/TS_clust_GUI')"]
+CMD ["R", "-e", "shiny::runApp(port=3838, host='0.0.0.0','/home/jenkins/ts_clust_gui')"]
